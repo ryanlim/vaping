@@ -58,6 +58,7 @@ class FPingBase(vaping.plugins.TimedProbe):
 
         self.count = self.config.get("count")
         self.period = self.config.get("period")
+        self.timeout = self.config.get("timeout", 200)
 
     def hosts_args(self):
         """
@@ -141,6 +142,7 @@ class FPingBase(vaping.plugins.TimedProbe):
             "-u",
             "-C%d" % self.count,
             "-p%d" % self.period,
+            "-t%d" % self.timeout,
             "-e",
         ]
         args.extend(self.hosts_args())
